@@ -1,7 +1,7 @@
 # ComfyUI-safety-checker
 A NSFW/Safety Checker Node for ComfyUI.
 
-This node introduces a CLIP-based safety checker for identifying and handling Not Safe For Work (NSFW) content in images. It utilizes a pretrained model from Hugging Face https://huggingface.co/CompVis/stable-diffusion-safety-checker, specifically designed for safety checks in images. The primary objective is to ensure that generated or processed images adhere to safety guidelines by detecting and replacing inappropriate content.
+This node introduces a CLIP-based safety checker for identifying and handling Not Safe For Work (NSFW) content in images. It utilizes a pretrained model from CompVis https://huggingface.co/CompVis/stable-diffusion-safety-checker, specifically designed for safety checks in images. The primary objective is to ensure that generated or processed images adhere to safety guidelines by detecting and replacing inappropriate content.
 
 ## Safety Checker Node
 This node processes input images, either by directly connecting an image or via VAE Decode, to identify any NSFW (Not Safe For Work) content. Detected NSFW images are substituted with solid black placeholders.
