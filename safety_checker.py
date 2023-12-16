@@ -44,9 +44,20 @@ class ClipSafetyChecker(PreTrainedModel):
 
     @staticmethod
     def compute_cosine_similarity(embeds, target_embeds):
-        # Compute the cosine similarity between two sets of embeddings
-        # The embeddings are expanded along a new dimension for proper broadcasting
-        return F.cosine_similarity(embeds.unsqueeze(1), target_embeds, dim=2)
+        # Check if embeds is a 1D tensor
+        if len(embeds.shape) == 1:
+            embeds = embeds.unsqueeze(0)
+
+        # Check if target_embeds is a 1D tensor
+        if len(target_embeds.shape) == 1:
+            target_embeds = target_embeds.unsqueeze(0)
+
+        # Expand embeds along a new dimension for proper broadcasting if necessary
+        if embeds.dim() == 2 and target_embeds.dim() == 2:
+            embeds = embeds.unsqueeze(1)
+
+        # Compute the cosine similarity
+        return F.cosine_similarity(embeds, target_embeds, dim=-1)
 
     @staticmethod
     def process_image_scores(image_idx, special_scores, concept_scores):
